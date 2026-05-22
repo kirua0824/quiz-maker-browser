@@ -1,0 +1,10 @@
+{
+  "name": "クイズメーカー",
+  "short_name": "Quiz Maker",
+  "description": "教材カードから10問小テストを作って採点できるブラウザ版クイズメーカー",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f1df",
+  "theme_color": "#f45b63",
+  "icons": []
+}

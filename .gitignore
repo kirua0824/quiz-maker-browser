@@ -1,0 +1,10 @@
+.DS_Store
+assets/
+docs/
+output/
+index 2.html
+styles 2.css
+src/game 2.js
+data/history1_quiz.txt
+supabase-seed.sql
+scripts/create_lovepo_video.py

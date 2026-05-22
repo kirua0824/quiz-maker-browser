@@ -1,0 +1,155 @@
+[
+  {
+    "id": "kokugo_mitsu_1",
+    "title": "国語 1年",
+    "badge": "国語",
+    "description": "アカデミーハイブリッド 光村版 1年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/kokugo_mitsu_1.md"
+  },
+  {
+    "id": "kokugo_mitsu_2",
+    "title": "国語 2年",
+    "badge": "国語",
+    "description": "アカデミーハイブリッド 光村版 2年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/kokugo_mitsu_2.md"
+  },
+  {
+    "id": "kokugo_mitsu_3",
+    "title": "国語 3年",
+    "badge": "国語",
+    "description": "アカデミーハイブリッド 光村版 3年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/kokugo_mitsu_3.md"
+  },
+  {
+    "id": "math_standard_1",
+    "title": "数学 1年",
+    "badge": "数学",
+    "description": "アカデミーハイブリッド 標準 1年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/math_standard_1.md"
+  },
+  {
+    "id": "math_standard_2",
+    "title": "数学 2年",
+    "badge": "数学",
+    "description": "アカデミーハイブリッド 標準 2年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/math_standard_2.md"
+  },
+  {
+    "id": "math_standard_3",
+    "title": "数学 3年",
+    "badge": "数学",
+    "description": "アカデミーハイブリッド 標準 3年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/math_standard_3.md"
+  },
+  {
+    "id": "science_standard_1",
+    "title": "理科 1年",
+    "badge": "理科",
+    "description": "アカデミーハイブリッド 標準 1年",
+    "status": "ready",
+    "sourceType": "local-md",
+    "deckPath": "./data/decks/science_standard_1.md"
+  },
+  {
+    "id": "science_standard_2",
+    "title": "理科 2年",
+    "badge": "理科",
+    "description": "アカデミーハイブリッド 標準 2年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/science_standard_2.md"
+  },
+  {
+    "id": "science_standard_3",
+    "title": "理科 3年",
+    "badge": "理科",
+    "description": "アカデミーハイブリッド 標準 3年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/science_standard_3.md"
+  },
+  {
+    "id": "social_standard_3",
+    "title": "社会 3年",
+    "badge": "社会",
+    "description": "アカデミーハイブリッド 標準 3年",
+    "status": "ready",
+    "sourceType": "local-md",
+    "deckPath": "./data/decks/social_standard_3.md"
+  },
+  {
+    "id": "geography1",
+    "title": "地理I",
+    "badge": "社会",
+    "description": "アカデミーハイブリッド 地理I",
+    "status": "ready",
+    "sourceType": "local-md",
+    "deckPath": "./data/decks/geography1.md"
+  },
+  {
+    "id": "geography2",
+    "title": "地理II",
+    "badge": "社会",
+    "description": "アカデミーハイブリッド 地理II",
+    "status": "ready",
+    "sourceType": "local-md",
+    "deckPath": "./data/decks/geography2.md"
+  },
+  {
+    "id": "history1",
+    "title": "歴史I",
+    "badge": "社会",
+    "description": "歴史のとらえ方から織田信長・豊臣秀吉まで",
+    "status": "ready",
+    "sourceType": "local-md",
+    "deckPath": "./data/decks/history1.md"
+  },
+  {
+    "id": "history2_3",
+    "title": "歴史II・III",
+    "badge": "社会",
+    "description": "アカデミーハイブリッド 歴史II・III",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/history2_3.md"
+  },
+  {
+    "id": "english_keirinkan_1",
+    "title": "英語 1年",
+    "badge": "英語",
+    "description": "アカデミーハイブリッド 啓林館 1年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/english_keirinkan_1.md"
+  },
+  {
+    "id": "english_keirinkan_2",
+    "title": "英語 2年",
+    "badge": "英語",
+    "description": "アカデミーハイブリッド 啓林館 2年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/english_keirinkan_2.md"
+  },
+  {
+    "id": "english_keirinkan_3",
+    "title": "英語 3年",
+    "badge": "英語",
+    "description": "アカデミーハイブリッド 啓林館 3年",
+    "status": "pending",
+    "sourceType": "pdf-pair",
+    "deckPath": "./data/decks/english_keirinkan_3.md"
+  }
+]
