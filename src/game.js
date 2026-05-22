@@ -34,6 +34,7 @@ const ui = {
   progressFill: document.querySelector("#progressFill"),
   quizCard: document.querySelector("#quizCard"),
   questionText: document.querySelector("#questionText"),
+  choiceGrid: document.querySelector("#choiceGrid"),
   answerForm: document.querySelector("#answerForm"),
   answerInput: document.querySelector("#answerInput"),
   hintButton: document.querySelector("#hintButton"),
@@ -62,6 +63,7 @@ const state = {
   remaining: 0,
   results: [],
   currentDeckId: "",
+  choiceOptions: [],
 };
 
 async function restore() {
@@ -477,12 +479,48 @@ function renderQuestion() {
   ui.hintButton.disabled = false;
   ui.checkButton.disabled = false;
   ui.nextButton.disabled = true;
-  ui.feedback.innerHTML = "答えを入力して、答え合わせを押してください。";
+  renderChoiceOptions(current);
+  ui.feedback.innerHTML = "選択肢を選ぶとすぐ採点します。直接入力でも答えられます。";
   updateStats();
   updateProgress();
 
   window.setTimeout(() => ui.answerInput.focus(), 60);
   if (state.duration > 0) startTimer();
+}
+
+function renderChoiceOptions(current) {
+  state.choiceOptions = buildChoiceOptions(current);
+  ui.choiceGrid.innerHTML = state.choiceOptions.map((choice, index) => {
+    const label = String.fromCharCode(65 + index);
+    return `<button class="choiceButton" type="button" data-choice-index="${index}">
+      <span>${label}</span>
+      <strong>${escapeHtml(choice)}</strong>
+    </button>`;
+  }).join("");
+}
+
+function buildChoiceOptions(current) {
+  const correct = current.primary;
+  const normalizedCorrect = normalizeAnswer(correct);
+  const candidates = [];
+  const seen = new Set([normalizedCorrect]);
+
+  const sameCategory = state.questions.filter((question) => question.category === current.category);
+  const pools = [sameCategory, state.questions];
+
+  for (const pool of pools) {
+    for (const question of shuffle(pool)) {
+      for (const answer of question.answers) {
+        const normalized = normalizeAnswer(answer);
+        if (!normalized || seen.has(normalized)) continue;
+        seen.add(normalized);
+        candidates.push(answer);
+        if (candidates.length >= 3) return shuffle([correct, ...candidates]);
+      }
+    }
+  }
+
+  return shuffle([correct, ...candidates]);
 }
 
 function startTimer() {
@@ -513,12 +551,12 @@ function updateStats() {
   ui.streakText.textContent = String(state.streak);
 }
 
-function checkAnswer(isTimeout = false) {
+function checkAnswer(isTimeout = false, selectedAnswer = "") {
   if (state.checked || !state.questions.length) return;
   clearInterval(state.timerId);
 
   const current = state.questions[state.index];
-  const userAnswer = ui.answerInput.value;
+  const userAnswer = selectedAnswer || ui.answerInput.value;
   const normalizedUser = normalizeAnswer(userAnswer);
   const correct = !isTimeout && current.answers.some((answer) => normalizeAnswer(answer) === normalizedUser);
 
@@ -527,6 +565,7 @@ function checkAnswer(isTimeout = false) {
   ui.hintButton.disabled = true;
   ui.checkButton.disabled = true;
   ui.nextButton.disabled = false;
+  markChoiceOptions(current, userAnswer);
 
   if (correct) {
     state.correct += 1;
@@ -556,6 +595,17 @@ function checkAnswer(isTimeout = false) {
   } else {
     ui.nextButton.textContent = "次の問題";
   }
+}
+
+function markChoiceOptions(current, userAnswer) {
+  ui.choiceGrid.querySelectorAll(".choiceButton").forEach((button) => {
+    const choice = state.choiceOptions[Number(button.dataset.choiceIndex)];
+    const isCorrectChoice = current.answers.some((answer) => normalizeAnswer(answer) === normalizeAnswer(choice));
+    const isUserChoice = normalizeAnswer(choice) === normalizeAnswer(userAnswer);
+    button.disabled = true;
+    button.classList.toggle("is-correct", isCorrectChoice);
+    button.classList.toggle("is-wrong", isUserChoice && !isCorrectChoice);
+  });
 }
 
 function updateProgressAfterCheck() {
@@ -588,6 +638,7 @@ function showResults() {
   ui.hintButton.disabled = true;
   ui.checkButton.disabled = true;
   ui.nextButton.disabled = true;
+  ui.choiceGrid.innerHTML = "";
   ui.resultPanel.hidden = false;
   ui.roundText.textContent = "終了";
   ui.questionText.textContent = "結果を確認して、もう一度挑戦できます。";
@@ -627,6 +678,7 @@ function renderReviewItem(result, index) {
 }
 
 function showSetupMessage(message) {
+  ui.choiceGrid.innerHTML = "";
   ui.feedback.textContent = message;
   ui.quizCard.classList.remove("is-correct");
   ui.quizCard.classList.add("is-wrong");
@@ -652,6 +704,13 @@ ui.startButton.addEventListener("click", startQuiz);
 ui.restartButton.addEventListener("click", startQuiz);
 ui.nextButton.addEventListener("click", nextQuestion);
 ui.hintButton.addEventListener("click", showHint);
+ui.choiceGrid.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-choice-index]");
+  if (!button || state.checked) return;
+  const choice = state.choiceOptions[Number(button.dataset.choiceIndex)];
+  ui.answerInput.value = choice;
+  checkAnswer(false, choice);
+});
 
 ui.answerForm.addEventListener("submit", (event) => {
   event.preventDefault();

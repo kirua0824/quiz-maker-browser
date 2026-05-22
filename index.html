@@ -85,8 +85,10 @@
           <p class="cardLabel">Question</p>
           <h2 id="questionText">教材カードと小ジャンルを選んでスタートしてください。</h2>
 
+          <div id="choiceGrid" class="choiceGrid" aria-label="選択肢"></div>
+
           <form id="answerForm" class="answerForm">
-            <label class="fieldLabel" for="answerInput">あなたの回答</label>
+            <label class="fieldLabel" for="answerInput">直接入力</label>
             <input id="answerInput" type="text" autocomplete="off" disabled />
             <div class="answerButtons">
               <button id="hintButton" class="ghostButton" type="button" disabled>ヒント</button>
@@ -118,6 +120,6 @@
     </main>
 
     <script defer src="./config.js?v=2"></script>
-    <script defer src="./src/game.js?v=8"></script>
+    <script defer src="./src/game.js?v=9"></script>
   </body>
 </html>
