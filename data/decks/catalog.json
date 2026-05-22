@@ -67,8 +67,8 @@
     "title": "理科 2年",
     "badge": "理科",
     "description": "アカデミーハイブリッド 標準 2年",
-    "status": "pending",
-    "sourceType": "pdf-pair",
+    "status": "ready",
+    "sourceType": "local-md",
     "deckPath": "./data/decks/science_standard_2.md"
   },
   {
@@ -76,8 +76,8 @@
     "title": "理科 3年",
     "badge": "理科",
     "description": "アカデミーハイブリッド 標準 3年",
-    "status": "pending",
-    "sourceType": "pdf-pair",
+    "status": "ready",
+    "sourceType": "local-md",
     "deckPath": "./data/decks/science_standard_3.md"
   },
   {
