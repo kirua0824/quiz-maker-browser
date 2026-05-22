@@ -82,9 +82,14 @@ async function restore() {
 }
 
 async function loadDeckCatalog() {
+  const localDecks = await loadLocalCatalog();
   const supabaseDecks = await loadSupabaseCatalog();
-  if (supabaseDecks.length) return supabaseDecks;
+  if (supabaseDecks.length) return mergeDeckCatalogs(supabaseDecks, localDecks);
 
+  return localDecks;
+}
+
+async function loadLocalCatalog() {
   try {
     const response = await fetch("./data/decks/catalog.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -93,6 +98,21 @@ async function loadDeckCatalog() {
   } catch {
     return FALLBACK_DECKS;
   }
+}
+
+function mergeDeckCatalogs(supabaseDecks, localDecks) {
+  const localById = new Map(localDecks.map((deck) => [deck.id, deck]));
+  const merged = supabaseDecks.map((deck) => {
+    const localDeck = localById.get(deck.id);
+    if (localDeck && localDeck.status === "ready" && deck.status !== "ready") return localDeck;
+    return deck;
+  });
+
+  localDecks.forEach((deck) => {
+    if (!merged.some((item) => item.id === deck.id)) merged.push(deck);
+  });
+
+  return merged;
 }
 
 function hasSupabaseConfig() {
@@ -381,7 +401,7 @@ function stripLabel(line) {
 function makeQuestion(question, answerText, category = DEFAULT_GENRE) {
   if (!question || !answerText) return null;
   const answers = answerText
-    .split(/\s*(?:\/|／|,|，|、)\s*/)
+    .split(/\s*(?:\/|／)\s*/)
     .map((answer) => answer.trim())
     .filter(Boolean);
   if (!answers.length) return null;

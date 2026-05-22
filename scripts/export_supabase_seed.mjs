@@ -29,7 +29,7 @@ function parseLine(line, genre) {
   const question = line.slice(0, index).trim();
   const answerText = line.slice(index + delimiter.length).trim();
   const answers = answerText
-    .split(/\s*(?:\/|／|,|，|、)\s*/)
+    .split(/\s*(?:\/|／)\s*/)
     .map((answer) => answer.trim())
     .filter(Boolean);
 

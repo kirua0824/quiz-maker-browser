@@ -121,8 +121,8 @@
     "title": "歴史II・III",
     "badge": "社会",
     "description": "アカデミーハイブリッド 歴史II・III",
-    "status": "pending",
-    "sourceType": "pdf-pair",
+    "status": "ready",
+    "sourceType": "local-md",
     "deckPath": "./data/decks/history2_3.md"
   },
   {
