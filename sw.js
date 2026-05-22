@@ -1,10 +1,10 @@
-const CACHE_NAME = "quiz-maker-v9";
+const CACHE_NAME = "quiz-maker-v8";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css?v=6",
   "./config.js?v=2",
-  "./src/game.js?v=9",
+  "./src/game.js?v=8",
   "./data/decks/catalog.json",
   "./data/decks/history1.md",
   "./data/decks/geography1.md",

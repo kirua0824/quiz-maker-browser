@@ -458,83 +458,9 @@ input:disabled {
 
 #questionText {
   min-height: 2.4em;
-  margin: 0 0 18px;
+  margin: 0 0 24px;
   font-size: clamp(1.8rem, 5vw, 3.4rem);
   line-height: 1.22;
-}
-
-.choiceGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.choiceButton {
-  min-height: 62px;
-  padding: 10px 12px;
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  gap: 10px;
-  align-items: center;
-  border: 1px solid rgba(23, 36, 40, 0.16);
-  border-radius: var(--radius);
-  background: #fff;
-  color: var(--ink);
-  text-align: left;
-  cursor: pointer;
-  transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
-}
-
-.choiceButton:hover {
-  border-color: rgba(15, 139, 141, 0.55);
-  box-shadow: 0 8px 18px rgba(15, 139, 141, 0.11);
-  transform: translateY(-1px);
-}
-
-.choiceButton span {
-  width: 30px;
-  height: 30px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  background: #173137;
-  color: #fff;
-  font-weight: 900;
-  font-size: 0.82rem;
-}
-
-.choiceButton strong {
-  min-width: 0;
-  overflow-wrap: anywhere;
-  font-size: clamp(0.92rem, 2vw, 1.08rem);
-  line-height: 1.35;
-}
-
-.choiceButton:disabled {
-  cursor: default;
-  transform: none;
-}
-
-.choiceButton.is-correct {
-  border-color: rgba(47, 158, 105, 0.72);
-  background: rgba(47, 158, 105, 0.12);
-}
-
-.choiceButton.is-correct span {
-  background: var(--green);
-}
-
-.choiceButton.is-wrong {
-  border-color: rgba(216, 74, 74, 0.72);
-  background: rgba(216, 74, 74, 0.1);
-}
-
-.choiceButton.is-wrong span {
-  background: var(--red);
 }
 
 .answerForm {
@@ -696,8 +622,7 @@ input:disabled {
   }
 
   .settings,
-  .resultStats,
-  .choiceGrid {
+  .resultStats {
     grid-template-columns: 1fr;
   }
 
